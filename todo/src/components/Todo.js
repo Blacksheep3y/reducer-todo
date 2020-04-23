@@ -9,22 +9,7 @@ const Todo = () => {
     const handleChanges = e => {
         e.preventDefault();
         setNewTodo(e.target.value);
-        // console.log('E VALUE: ', e.target.value)
       };
-
-    // const addTodo = (e, todo) => {
-    //     e.preventDefault();
-
-    //     const newtodo = {
-    //       item: todo,
-    //       completed: false,
-    //       id: Date.now()
-    //     };
-    
-        // dispatch({
-        //     initialTodoState: [...initialTodoState, newtodo]
-        // });
-    //   };
     
     const submitTodo = e => {
         e.preventDefault();
@@ -32,16 +17,13 @@ const Todo = () => {
                    payload: newTodo });
       };
 
-    //1:25:55
-
     return (
-        <div>
-            
+        <div>     
             <h1>TO DOs: </h1>
-                <ul className="todo-container">
-                    {/* <li>{todoState.map(x => <div>{x.item}</div>)}</li> */}
-                    <li>{initialTodoState.item}</li>
-                </ul>
+            <ul className="todo-container">
+                {/* <li>{todoState.map(x => <div>{x.item}</div>)}</li> */}
+                <li>{todoState.item}</li>
+            </ul>
             <form>
                 <input
                 type="text"
@@ -51,30 +33,8 @@ const Todo = () => {
                 />
                 <button onClick = {submitTodo}> Add </button>
             </form>
-            {/* <div>
-                <form>
-                    <input
-                        type="text"
-                        name="todo"
-                        value={"todo"}
-                        onChange={handleChanges}
-                    />
-                    <button>Add</button>
-                </form>
-                {!todoState.completed ? (
-                    <div>
-                        {todoState.item}{" "}
-                        <button
-                            onClick={() => dispatch({ type: "TOGGLE_COMPLETED" })}
-                        >
-                        </button>
-                    </div>
-                ) : (
-                    <div className="todo-completed">{todoState.item}</div>
-                )}
-            </div> */}
         </div>
     );
 };
 
-export default Todo;
+export default Todo;     //1:25:55
