@@ -7,34 +7,39 @@ const Todo = () => {
     const [newTodo, setNewTodo] = useState("");
 
     const handleChanges = e => {
-        e.preventDefault();
         setNewTodo(e.target.value);
       };
     
-    const submitTodo = e => {
-        e.preventDefault();
-        dispatch({ type: "ADD_TODO", 
-                   payload: newTodo });
-      };
-
     return (
         <div>     
             <h1>TO DOs: </h1>
-            <ul className="todo-container">
-                {/* <li>{todoState.map(x => <div>{x.item}</div>)}</li> */}
-                <li>{todoState.item}</li>
-            </ul>
+            <div>
+                {todoState.todo.map((item, index) => (
+                    <div key={item.id} onClick={() => dispatch({ type: 'TOGGLE_COMPLETED' , payload: item.id})} className={`${item.completed === true ? 'completed': ""}`}>
+                    <div>{item.task}</div>
+                    </div>
+                ))}
+            </div>
             <form>
+                <label htmlFor="newTodo"> 
                 <input
+                id="newTodo"
                 type="text"
                 name="newTodo"
                 value={newTodo}
                 onChange={handleChanges}
                 />
-                <button onClick = {submitTodo}> Add </button>
+                </label>
             </form>
+            <button onClick={ () => dispatch({ type: 'ADD_TODO' , payload: {
+                    task: newTodo,
+                    id: Date.now(),
+                    Completed: false
+                }},
+                setNewTodo(''))}>Add ToDo</button>
+            <button onClick={ () => dispatch({ type: 'CLEAR_COMPLETED'})}>CLEAR</button>
         </div>
     );
 };
 
-export default Todo;     //1:25:55
+export default Todo;
